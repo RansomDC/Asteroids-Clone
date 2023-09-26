@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://matgqyct17aa"]
+
+[ext_resource type="Texture2D" uid="uid://cj5s8cnhh71ul" path="res://Assets/Meteor.png" id="1_fcijs"]
+
+[node name="Asteroid" type="CharacterBody2D"]
+metadata/_edit_group_ = true
+
+[node name="AsteroidImage" type="Sprite2D" parent="."]
+texture = ExtResource("1_fcijs")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(17, -48, 49, -12, 30, 42, -20, 48, -49, 10, -35, -34)

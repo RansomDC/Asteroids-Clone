@@ -13,25 +13,21 @@ var gp = global_position
 func get_input():
 	rotation_direction = Input.get_axis("ui_left", "ui_right")
 	if (Input.is_action_pressed("ui_up")):
-		velocity.y += transform.y.y * -speed
-		velocity.x += transform.y.x * -speed
+		accelerate()
 
 
 func accelerate():
-	if (velocity.length() < 500):
-		get_input()
+	if (velocity.length() < abs(500)):
+		velocity.y += transform.y.y * -speed
+		velocity.x += transform.y.x * -speed
 	else:
-		if (velocity.y < 0):
-			if (transform.y.y > 0):
-				get_input()
+		if ((velocity.y < 0 && transform.y.y <= 0) || (velocity.y > 0 && transform.y.y > 0) || (velocity.x > 0 && transform.y.x > 0) || (velocity.x < 0 && transform.y.x <= 0)):
+			velocity.y += transform.y.y * -speed
+			velocity.x += transform.y.x * -speed
 
 		#Here we say, you can only add velocity in directions other than the current ones
 		
-		print("vvv")
-		print(velocity)
-		print(transform.y)
-		print(transform.x)
-		print("^^^")
+
 
 
 
@@ -40,7 +36,10 @@ func _physics_process(delta):
 	get_input()
 	rotation += rotation_direction * rotation_speed * delta
 	move_and_slide()
-	print(velocity)
+	
+	print("vvv")
+	print("transform.y: {0}, \ntransform.x: {1}, \nvelocity: {2} \nlength: {3}".format([transform.y.y, transform.y.x, velocity, velocity.length()], "{_}"))
+	print("^^^")
 	
 	var screen_size = get_viewport_rect().size
 	

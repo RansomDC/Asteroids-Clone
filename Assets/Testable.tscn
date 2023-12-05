@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2vsu0sbkoc81"]
+
+[ext_resource type="Script" path="res://Assets/Testable.gd" id="1_0hhy4"]
+[ext_resource type="Texture2D" uid="uid://dx0tbepfeltru" path="res://Assets/Ship.png" id="2_sk8ux"]
+
+[node name="Testable" type="CharacterBody2D"]
+position = Vector2(960, 540)
+script = ExtResource("1_0hhy4")
+metadata/_edit_group_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(17, -48, 48, -12, 30, 42, -21, 47, -50, 10, -36, -34)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sk8ux")

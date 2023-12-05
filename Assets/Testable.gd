@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 
+const SPEED = 2
 const MAX_SPEED = 1000
-@export var speed = 40
+@export var speed = 45
 @export var rotation_speed = 5
 var rotation_direction = 0
 

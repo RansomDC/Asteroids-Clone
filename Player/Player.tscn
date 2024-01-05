@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_dh8rg"]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(960, 540)
-up_direction = Vector2(3.7037e-06, 1)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_dh8rg")
 metadata/_edit_group_ = true
 
@@ -14,5 +14,7 @@ scale = Vector2(0.651786, 1)
 texture = ExtResource("1_5dicg")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(-3, -38, 2, -38, 9, -18, 37, 5, 25, 35, 11, 31, 8, 38, -8, 38, -11, 30, -25, 35, -37, 5, -9, -18)
+
+[node name="Cannon" type="Node2D" parent="."]
+position = Vector2(0, -40)

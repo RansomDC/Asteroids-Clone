@@ -2,17 +2,19 @@
 
 [ext_resource type="Script" path="res://Level/Level.gd" id="1_cch33"]
 [ext_resource type="PackedScene" uid="uid://dhddtdto4phfe" path="res://Player/Player.tscn" id="2_bn46h"]
-[ext_resource type="PackedScene" uid="uid://bju2cjswnp5k5" path="res://Laser/laser.tscn" id="3_1tvgl"]
+[ext_resource type="PackedScene" uid="uid://matgqyct17aa" path="res://Asteroid/Asteroid.tscn" id="3_i5wgf"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_cch33")
 
 [node name="Player" parent="." instance=ExtResource("2_bn46h")]
+position = Vector2(960, 540)
 up_direction = Vector2(0.999999, -0.00104167)
 
 [node name="Lasers" type="Node" parent="."]
 
-[node name="Laser" parent="." instance=ExtResource("3_1tvgl")]
-position = Vector2(905, 727)
+[node name="Asteroid" parent="." instance=ExtResource("3_i5wgf")]
+position = Vector2(545, 409)
+size = 1
 
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]

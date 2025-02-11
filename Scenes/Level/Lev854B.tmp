@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b30bpvsan0u2f"]
 
-[ext_resource type="Script" path="res://Level/Level.gd" id="1_cch33"]
-[ext_resource type="PackedScene" uid="uid://dhddtdto4phfe" path="res://Player/Player.tscn" id="2_bn46h"]
-[ext_resource type="PackedScene" uid="uid://matgqyct17aa" path="res://Asteroid/Asteroid.tscn" id="3_i5wgf"]
+[ext_resource type="Script" path="res://Scenes/Level/Level.gd" id="1_cch33"]
+[ext_resource type="PackedScene" uid="uid://bvync6fy8hxm0" path="res://Scenes/Player/Player.tscn" id="2_bn46h"]
+[ext_resource type="PackedScene" uid="uid://matgqyct17aa" path="res://Scenes/Asteroid/Asteroid.tscn" id="3_i5wgf"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_cch33")

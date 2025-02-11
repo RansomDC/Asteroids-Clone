@@ -1,12 +1,19 @@
 extends CharacterBody2D
 
+signal laser_fired(laser)
 
-const SPEED = 2
-const MAX_SPEED = 1000
-@export var speed = 45
+@export var MAX_SPEED = 1000
+@export var speed = 40
 @export var rotation_speed = 5
-var rotation_direction = 0
+@export var rotation_direction = 0
 
+@onready var cannon = $Cannon
+
+var laser_scene = preload("res://Scenes/Laser/laser.tscn")
+
+func _process(delta):
+	if Input.is_action_just_pressed("fire"):
+		fire_laser()
 
 func get_input():
 	rotation_direction = Input.get_axis("ui_left", "ui_right")
@@ -23,6 +30,7 @@ func accelerate():
 func _physics_process(delta):
 	get_input()
 	rotation += rotation_direction * rotation_speed * delta
+	
 	move_and_slide()
 	
 	var screen_size = get_viewport_rect().size
@@ -34,3 +42,9 @@ func _physics_process(delta):
 		global_position.x = screen_size.x
 	elif global_position.x > screen_size.x:
 		global_position.x = 0
+
+func fire_laser():
+	var l = laser_scene.instantiate()
+	l.global_position = cannon.global_position
+	l.rotation = rotation
+	emit_signal("laser_fired", l)

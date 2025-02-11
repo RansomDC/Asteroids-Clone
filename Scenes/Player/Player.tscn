@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhddtdto4phfe"]
+[gd_scene load_steps=3 format=3 uid="uid://bvync6fy8hxm0"]
 
-[ext_resource type="Texture2D" uid="uid://dx0tbepfeltru" path="res://Assets/Ship.png" id="1_5dicg"]
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_dh8rg"]
+[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_lcc2l"]
+[ext_resource type="Texture2D" uid="uid://dx0tbepfeltru" path="res://Assets/Ship.png" id="2_jp27x"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_dh8rg")
+script = ExtResource("1_lcc2l")
 metadata/_edit_group_ = true
 
 [node name="ShipImage" type="Sprite2D" parent="."]
 scale = Vector2(0.651786, 1)
-texture = ExtResource("1_5dicg")
+texture = ExtResource("2_jp27x")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-3, -38, 2, -38, 9, -18, 37, 5, 25, 35, 11, 31, 8, 38, -8, 38, -11, 30, -25, 35, -37, 5, -9, -18)

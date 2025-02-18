@@ -40,3 +40,8 @@ func _physics_process(delta):
 		global_position.x = (screen_size.x + radius)
 	elif (global_position.x - radius) > screen_size.x:
 		global_position.x = -radius
+
+
+func _on_asteroid_area_entered(area):
+	if area is Laser:
+		queue_free()

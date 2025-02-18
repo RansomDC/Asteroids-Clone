@@ -14,3 +14,5 @@ texture = ExtResource("2_a4vt4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
 shape = ExtResource("3_e6mqh")
+
+[connection signal="area_entered" from="." to="." method="_on_asteroid_area_entered"]

@@ -23,7 +23,6 @@ func _process(delta):
 
 func _on_player_laser_fired(laser):
 	lasers.add_child(laser)
-	print("laser fired")
 
 func get_random_position():
 	randomize()

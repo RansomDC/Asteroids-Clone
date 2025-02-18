@@ -48,3 +48,7 @@ func fire_laser():
 	l.global_position = cannon.global_position
 	l.rotation = rotation
 	emit_signal("laser_fired", l)
+
+
+func _on_area_2d_area_entered(area):
+	print("You hit an asteroid")

@@ -8,8 +8,6 @@ radius = 4.0
 height = 26.0
 
 [node name="Laser" type="Area2D"]
-collision_layer = 8
-collision_mask = 4
 script = ExtResource("1_ilpuf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

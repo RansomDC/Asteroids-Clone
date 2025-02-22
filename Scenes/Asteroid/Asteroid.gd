@@ -16,15 +16,15 @@ func _ready():
 	match size:
 		AsteroidSize.LARGE:
 			speed = randf_range(50, 100)
-			sprite.texture = preload("res://Assets/L_Meteor.png")
+			sprite.texture = preload("res://Assets/Images/L_Meteor.png")
 			cShape.shape = preload("res://Assets/resources/asteroid_cshape_L.tres")
 		AsteroidSize.MEDIUM:
 			speed = randf_range(100, 150)
-			sprite.texture = preload("res://Assets/M_Meteor.png")
+			sprite.texture = preload("res://Assets/Images/M_Meteor.png")
 			cShape.shape = preload("res://Assets/resources/asteroid_cshape_M.tres")
 		AsteroidSize.SMALL:
 			speed = randf_range(100, 200)
-			sprite.texture = preload("res://Assets/S_Meteor.png")
+			sprite.texture = preload("res://Assets/Images/S_Meteor.png")
 			cShape.shape = preload("res://Assets/resources/asteroid_cshape_S.tres")
 	
 func _physics_process(delta):
@@ -44,4 +44,5 @@ func _physics_process(delta):
 
 func _on_asteroid_area_entered(area):
 	if area is Laser:
+		area.queue_free()
 		queue_free()

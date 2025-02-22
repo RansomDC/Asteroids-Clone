@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx0tbepfeltru"
-path="res://.godot/imported/Ship.png-822e95a0f04d80a887d195895bfbe6bc.ctex"
+uid="uid://6basm6sbhnxg"
+path="res://.godot/imported/S_Meteor.png-472e9a05278b47c451df9b846b5e04e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Ship.png"
-dest_files=["res://.godot/imported/Ship.png-822e95a0f04d80a887d195895bfbe6bc.ctex"]
+source_file="res://Assets/Images/S_Meteor.png"
+dest_files=["res://.godot/imported/S_Meteor.png-472e9a05278b47c451df9b846b5e04e7.ctex"]
 
 [params]
 

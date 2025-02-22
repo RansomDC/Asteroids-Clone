@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 signal laser_fired(laser)
 
-@export var MAX_SPEED = 1000
+@export var MAX_SPEED = 540
 @export var speed = 40
 @export var rotation_speed = 5
 @export var rotation_direction = 0
@@ -48,7 +48,11 @@ func fire_laser():
 	l.global_position = cannon.global_position
 	l.rotation = rotation
 	emit_signal("laser_fired", l)
+	$Laser_Sound.play()
+	
 
 
 func _on_area_2d_area_entered(area):
 	print("You hit an asteroid")
+	#This will restart the level if the player touches an asteroid
+	#get_tree().reload_current_scene()

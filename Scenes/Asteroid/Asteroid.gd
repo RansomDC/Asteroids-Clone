@@ -1,4 +1,7 @@
-extends Area2D
+class_name Asteroid extends Area2D
+
+#Takes the position and size of the asteroid
+signal exploded(pos, size)
 
 var movement_vecotr := Vector2(0, -1)
 
@@ -46,3 +49,8 @@ func _on_asteroid_area_entered(area):
 	if area is Laser:
 		area.queue_free()
 		queue_free()
+		explode()
+
+func explode():
+	emit_signal("exploded", global_position, size)
+	queue_free()

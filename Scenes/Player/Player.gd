@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal laser_fired(laser)
 
 @export var MAX_SPEED = 540
-@export var speed = 40
+@export var speed = 30
 @export var rotation_speed = 5
 @export var rotation_direction = 0
 

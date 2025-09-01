@@ -6,8 +6,10 @@ signal laser_fired(laser)
 @export var speed = 30
 @export var rotation_speed = 5
 @export var rotation_direction = 0
+@export var ship_size = 45
 
 @onready var cannon = $Cannon
+@onready var cShape = $ShipArea2D/ShipCollisionPoly
 
 var laser_scene = preload("res://Scenes/Laser/laser.tscn")
 
@@ -33,15 +35,26 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+	#var screen_size = get_viewport_rect().size
+	var radius = ship_size
+#	if global_position.y < 0:
+#		global_position.y = screen_size.y
+#	elif global_position.y > screen_size.y:
+#		global_position.y = 0
+#	if global_position.x < 0:
+#		global_position.x = screen_size.x
+#	elif global_position.x > screen_size.x:
+#		global_position.x = 0
+		
 	var screen_size = get_viewport_rect().size
-	if global_position.y < 0:
-		global_position.y = screen_size.y
-	elif global_position.y > screen_size.y:
-		global_position.y = 0
-	if global_position.x < 0:
-		global_position.x = screen_size.x
-	elif global_position.x > screen_size.x:
-		global_position.x = 0
+	if (global_position.y + radius) < 0:
+		global_position.y = (screen_size.y + radius)
+	elif (global_position.y - radius) > screen_size.y:
+		global_position.y = -radius
+	if (global_position.x + radius) < 0:
+		global_position.x = (screen_size.x + radius)
+	elif (global_position.x - radius) > screen_size.x:
+		global_position.x = -radius
 
 func fire_laser():
 	var l = laser_scene.instantiate()

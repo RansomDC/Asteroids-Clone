@@ -4,26 +4,27 @@ extends Node
 @onready var player = $Player
 @onready var asteroids = $Asteroids
 
-var num_asteroids = 3
+@onready var asteroid = preload("res://Scenes/Asteroid/Asteroid.tscn")
 
 var asteroid_scene = preload("res://Scenes/Asteroid/Asteroid.tscn")
 
-#Commenting this our for now so that I can follow the tutorial directly, 
-#not sure where or how I added this but maybe I'll need to come back to it later
-#@onready var asteroid = preload("res://Scenes/Asteroid/Asteroid.tscn")
+var num_asteroids := 3
+var score := 0
 
 func _ready():
+	score = 0
+	
 	#Laser functionality
 	player.connect("laser_fired", _on_player_laser_fired)
 	
-	### Commented this out temporarily so that I could follow the tutorial ###
-#	#This spawns asteroids in random positions
-#	for i in num_asteroids:
-#		var new_asteroid = asteroid.instantiate()
-#		new_asteroid.position = get_random_position()
-#		add_child(new_asteroid)
-#	pass
+	#This spawns asteroids in random positions
+	for i in num_asteroids:
+		var new_asteroid = asteroid.instantiate()
+		new_asteroid.position = get_random_position()
+		asteroids.add_child(new_asteroid)
+	pass
 	
+	# Setup asteroids to fire a method when the "exploded" signal is received
 	for asteroid in asteroids.get_children():
 		asteroid.connect("exploded", _on_asteroid_exploded)
 
@@ -40,7 +41,9 @@ func get_random_position():
 	var v = Vector2(randf_range(0, 1024), randf_range(0,600))
 	return v
 
-func _on_asteroid_exploded(pos, size):
+func _on_asteroid_exploded(pos, size, points):
+	score += points
+	print(score)
 	for i in range(2):
 		match size:
 			Asteroid.AsteroidSize.LARGE:

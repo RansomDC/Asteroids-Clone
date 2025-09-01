@@ -1,7 +1,7 @@
 class_name Asteroid extends Area2D
 
 #Takes the position and size of the asteroid
-signal exploded(pos, size)
+signal exploded(pos, size, points)
 
 var movement_vecotr := Vector2(0, -1)
 
@@ -12,6 +12,18 @@ var speed := 50
 
 @onready var sprite = $AsteroidImage
 @onready var cShape = $CollisionShape2D
+
+var points: int:
+	get:
+		match size:
+			AsteroidSize.LARGE:
+				return 100
+			AsteroidSize.MEDIUM:
+				return 50
+			AsteroidSize.SMALL:
+				return 25
+			_:
+				return 0
 
 func _ready():
 	rotation = randf_range(0, 3*PI)
@@ -52,5 +64,5 @@ func _on_asteroid_area_entered(area):
 		explode()
 
 func explode():
-	emit_signal("exploded", global_position, size)
+	emit_signal("exploded", global_position, size, points)
 	queue_free()

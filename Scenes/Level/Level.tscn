@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvsju1cdry80y"]
+[gd_scene load_steps=4 format=3 uid="uid://dvsju1cdry80y"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level.gd" id="1_cch33"]
 [ext_resource type="PackedScene" uid="uid://bvync6fy8hxm0" path="res://Scenes/Player/Player.tscn" id="2_bn46h"]
 [ext_resource type="AudioStream" uid="uid://b75dsmh1idcm0" path="res://Assets/Sounds/Laser_Sound.mp3" id="3_11b8a"]
-[ext_resource type="PackedScene" uid="uid://matgqyct17aa" path="res://Scenes/Asteroid/Asteroid.tscn" id="4_jttt8"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_cch33")
@@ -16,13 +15,8 @@ up_direction = Vector2(0.999999, -0.00104167)
 
 [node name="Laser Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_11b8a")
+volume_db = -15.62
 
 [node name="Asteroids" type="Node" parent="."]
-
-[node name="Asteroid" parent="Asteroids" instance=ExtResource("4_jttt8")]
-
-[node name="Asteroid2" parent="Asteroids" instance=ExtResource("4_jttt8")]
-
-[node name="Asteroid3" parent="Asteroids" instance=ExtResource("4_jttt8")]
 
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]

@@ -1,6 +1,7 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 signal laser_fired(laser)
+signal died
 
 @export var MAX_SPEED = 540
 @export var speed = 30
@@ -10,8 +11,11 @@ signal laser_fired(laser)
 
 @onready var cannon = $Cannon
 @onready var cShape = $ShipArea2D/ShipCollisionPoly
+@onready var sprite = $ShipImage
 
 var laser_scene = preload("res://Scenes/Laser/laser.tscn")
+
+var alive = true
 
 func _process(delta):
 	if Input.is_action_just_pressed("fire"):
@@ -35,16 +39,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	#var screen_size = get_viewport_rect().size
 	var radius = ship_size
-#	if global_position.y < 0:
-#		global_position.y = screen_size.y
-#	elif global_position.y > screen_size.y:
-#		global_position.y = 0
-#	if global_position.x < 0:
-#		global_position.x = screen_size.x
-#	elif global_position.x > screen_size.x:
-#		global_position.x = 0
 		
 	var screen_size = get_viewport_rect().size
 	if (global_position.y + radius) < 0:
@@ -62,10 +57,31 @@ func fire_laser():
 	l.rotation = rotation
 	emit_signal("laser_fired", l)
 	$Laser_Sound.play()
-	
 
+func die():
+	# This makes it so that we can't die more than once.
+	if alive == true:
+		alive = false
+		emit_signal("died")
+		#This deletes the player
+		#queue_free()
+		
+		#This, instead, disables the sprite and makes the player inactive
+		sprite.visible = false
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_area_2d_area_entered(area):
-	print("You hit an asteroid")
-	#This will restart the level if the player touches an asteroid
-	#get_tree().reload_current_scene()
+	if area is Asteroid:
+		print("You hit an asteroid")
+		die()
+		
+func respawn(pos):
+	if !alive:
+		alive = true
+		global_position = pos
+		#This makes sure we don't have velocity when the player spawns
+		velocity = Vector2.ZERO
+		
+		#These re-enable the Player
+		sprite.visible = true
+		process_mode = Node.PROCESS_MODE_INHERIT

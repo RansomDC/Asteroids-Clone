@@ -24,4 +24,7 @@ volume_db = -15.62
 
 [node name="Asteroids" type="Node" parent="."]
 
+[node name="PlayerSpawnPos" type="Node2D" parent="."]
+position = Vector2(960, 540)
+
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]

@@ -1,13 +1,15 @@
-extends Node
+class_name Level extends Node
 
 @onready var lasers = $Lasers
 @onready var player = $Player
 @onready var asteroids = $Asteroids
 @onready var hud = $UI/HUD
+@onready var playerSpawn = $PlayerSpawnPos
 
 @onready var asteroid = preload("res://Scenes/Asteroid/Asteroid.tscn")
 
 var asteroid_scene = preload("res://Scenes/Asteroid/Asteroid.tscn")
+var player_scene = preload("res://Scenes/Player/Player.tscn")
 
 var num_asteroids := 3
 var score := 0:
@@ -15,11 +17,14 @@ var score := 0:
 		score = value
 		hud.score = score
 
+var lives = 3
+
 func _ready():
 	score = 0
-	
+	lives = 3
 	#Laser functionality
 	player.connect("laser_fired", _on_player_laser_fired)
+	player.connect("died", _on_player_died)
 	
 	#This spawns asteroids in random positions
 	for i in num_asteroids:
@@ -64,8 +69,14 @@ func spawn_asteroid(pos, size):
 	a.connect("exploded", _on_asteroid_exploded)
 	asteroids.add_child(a)
 	
-	
-	
+func _on_player_died():
+	lives -= 1
+	print(lives)
+	if lives <= 0:
+		get_tree().reload_current_scene()
+	else:
+		await get_tree().create_timer(1).timeout
+		player.respawn(playerSpawn.global_position)
 	
 	
 	

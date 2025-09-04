@@ -3,13 +3,17 @@ extends Node
 @onready var lasers = $Lasers
 @onready var player = $Player
 @onready var asteroids = $Asteroids
+@onready var hud = $UI/HUD
 
 @onready var asteroid = preload("res://Scenes/Asteroid/Asteroid.tscn")
 
 var asteroid_scene = preload("res://Scenes/Asteroid/Asteroid.tscn")
 
 var num_asteroids := 3
-var score := 0
+var score := 0:
+	set(value):
+		score = value
+		hud.score = score
 
 func _ready():
 	score = 0

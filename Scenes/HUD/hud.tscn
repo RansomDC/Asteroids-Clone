@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://x6prspe56jpi"]
+
+[ext_resource type="Script" path="res://Scenes/HUD/hud.gd" id="1_goeu2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3e6om"]
+font_size = 35
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_goeu2")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 16.0
+offset_right = 231.0
+offset_bottom = 68.0
+text = "SCORE: 9999"
+label_settings = SubResource("LabelSettings_3e6om")

@@ -12,16 +12,31 @@ var asteroid_scene = preload("res://Scenes/Asteroid/Asteroid.tscn")
 var player_scene = preload("res://Scenes/Player/Player.tscn")
 
 var num_asteroids := 3
-var score := 0:
-	set(value):
-		score = value
-		hud.score = score
+var _score := 0 
+var _lives := 3
 
-var lives = 3
+var score:
+	set(value):
+		_score = value
+		hud.score = _score
+#	Ideally I would use:
+#		set(value):
+#			field = value
+#			hud.score = field
+#	but the field keyword is not working. It should work in Godot 4.x.x, so I'm not sure what's going on.
+	get:
+		return _score
+
+var lives:
+	set(value):
+		_lives = value
+		hud.lives = _lives
+	get:
+		return _lives
 
 func _ready():
-	score = 0
-	lives = 3
+	_score = 0
+	_lives = 3
 	#Laser functionality
 	player.connect("laser_fired", _on_player_laser_fired)
 	player.connect("died", _on_player_died)

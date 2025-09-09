@@ -1,8 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://x6prspe56jpi"]
+[gd_scene load_steps=4 format=3 uid="uid://x6prspe56jpi"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/hud.gd" id="1_goeu2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3e6om"]
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_4kk3g"]
 font_size = 35
 
 [node name="HUD" type="Control"]
@@ -20,3 +23,12 @@ offset_right = 231.0
 offset_bottom = 68.0
 text = "SCORE: 9999"
 label_settings = SubResource("LabelSettings_3e6om")
+
+[node name="Lives" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1730.0
+offset_top = 27.0
+offset_right = 1870.0
+offset_bottom = 92.0
+text = "Lives: 3"
+label_settings = SubResource("LabelSettings_4kk3g")

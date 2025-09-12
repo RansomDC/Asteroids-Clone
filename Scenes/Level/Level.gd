@@ -33,13 +33,15 @@ var lives:
 	set(value):
 		_lives = value
 		hud.lives = _lives
-		UpdateUiLives(_lives)
+		hud.init_lives(_lives)
 	get:
 		return _lives
 
 func _ready():
 	_score = 0
 	_lives = 3
+	hud.init_lives(_lives)
+	
 	#Laser functionality
 	player.connect("laser_fired", _on_player_laser_fired)
 	player.connect("died", _on_player_died)
@@ -95,18 +97,7 @@ func _on_player_died():
 	else:
 		await get_tree().create_timer(1).timeout
 		player.respawn(playerSpawn.global_position)
-	
-func UpdateUiLives(numLives):
-	var lifeIcon = life_icon.instantiate()
-	var currentIcons = livesContainer.get_children()
-	
-#	Delete each icon currently in the livesContainer
-	for n in currentIcons:
-		n.queue_free()
 
-#	Create icons for the number of lives left
-	for i in numLives:
-		livesContainer.add_child(lifeIcon)
 
 
 

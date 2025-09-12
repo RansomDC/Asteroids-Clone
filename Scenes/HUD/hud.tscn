@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://x6prspe56jpi"]
+[gd_scene load_steps=5 format=3 uid="uid://x6prspe56jpi"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/hud.gd" id="1_goeu2"]
+[ext_resource type="PackedScene" uid="uid://bksguuueog6qv" path="res://Scenes/UILife/Ui_Life.tscn" id="2_vgjcy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3e6om"]
 font_size = 35
@@ -35,8 +36,11 @@ label_settings = SubResource("LabelSettings_4kk3g")
 
 [node name="LivesContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 1677.0
-offset_top = 91.0
-offset_right = 1717.0
-offset_bottom = 131.0
-scale = Vector2(0.0737446, 0.214315)
+offset_left = 1704.0
+offset_top = 94.0
+offset_right = 1760.0
+offset_bottom = 154.0
+scale = Vector2(0.298812, 0.453166)
+
+[node name="LifeIcon" parent="LivesContainer" instance=ExtResource("2_vgjcy")]
+layout_mode = 2

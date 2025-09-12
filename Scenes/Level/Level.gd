@@ -4,12 +4,14 @@ class_name Level extends Node
 @onready var player = $Player
 @onready var asteroids = $Asteroids
 @onready var hud = $UI/HUD
+@onready var livesContainer = $UI/HUD/LivesContainer
 @onready var playerSpawn = $PlayerSpawnPos
 
 @onready var asteroid = preload("res://Scenes/Asteroid/Asteroid.tscn")
 
 var asteroid_scene = preload("res://Scenes/Asteroid/Asteroid.tscn")
 var player_scene = preload("res://Scenes/Player/Player.tscn")
+var life_icon = preload("res://Scenes/UILife/Ui_Life.tscn")
 
 var num_asteroids := 3
 var _score := 0 
@@ -31,6 +33,7 @@ var lives:
 	set(value):
 		_lives = value
 		hud.lives = _lives
+		UpdateUiLives(_lives)
 	get:
 		return _lives
 
@@ -93,5 +96,22 @@ func _on_player_died():
 		await get_tree().create_timer(1).timeout
 		player.respawn(playerSpawn.global_position)
 	
+func UpdateUiLives(numLives):
+	var lifeIcon = life_icon.instantiate()
+	var currentIcons = livesContainer.get_children()
 	
-	
+#	Delete each icon currently in the livesContainer
+	for n in currentIcons:
+		n.queue_free()
+
+#	Create icons for the number of lives left
+	for i in numLives:
+		livesContainer.add_child(lifeIcon)
+
+
+
+
+
+
+
+

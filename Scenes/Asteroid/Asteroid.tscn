@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://matgqyct17aa"]
 
 [ext_resource type="Script" path="res://Scenes/Asteroid/Asteroid.gd" id="1_tgads"]
-[ext_resource type="Texture2D" uid="uid://cj5s8cnhh71ul" path="res://Assets/Images/L_Meteor.png" id="2_cwijq"]
+[ext_resource type="Texture2D" uid="uid://cj5s8cnhh71ul" path="res://Images/L_Meteor.png" id="2_11uxd"]
 [ext_resource type="Shape2D" uid="uid://o3x1e1s08vp0" path="res://Assets/resources/asteroid_cshape_L.tres" id="3_e6mqh"]
 
 [node name="Asteroid" type="Area2D"]
@@ -9,7 +9,7 @@ script = ExtResource("1_tgads")
 metadata/_edit_group_ = true
 
 [node name="AsteroidImage" type="Sprite2D" parent="."]
-texture = ExtResource("2_cwijq")
+texture = ExtResource("2_11uxd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

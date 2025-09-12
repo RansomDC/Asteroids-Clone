@@ -32,3 +32,11 @@ offset_right = 1870.0
 offset_bottom = 92.0
 text = "Lives: 3"
 label_settings = SubResource("LabelSettings_4kk3g")
+
+[node name="LivesContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 1677.0
+offset_top = 91.0
+offset_right = 1717.0
+offset_bottom = 131.0
+scale = Vector2(0.0737446, 0.214315)

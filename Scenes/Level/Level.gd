@@ -4,6 +4,7 @@ class_name Level extends Node
 @onready var player = $Player
 @onready var asteroids = $Asteroids
 @onready var hud = $UI/HUD
+@onready var gameOverScreen = $UI/GameOverScreen
 @onready var livesContainer = $UI/HUD/LivesContainer
 @onready var playerSpawn = $PlayerSpawnPos
 
@@ -38,12 +39,13 @@ var lives:
 		return _lives
 
 func _ready():
+	gameOverScreen.visible = false
 	_score = 0
 	_lives = 3
 	hud.init_lives(_lives)
 	
 	#Laser functionality
-	player.connect("laser_fired", _on_player_laser_fired)
+	#player.connect("laser_fired", _on_player_laser_fired)
 	player.connect("died", _on_player_died)
 	
 	#This spawns asteroids in random positions
@@ -54,10 +56,10 @@ func _ready():
 	pass
 	
 	# Setup asteroids to fire a method when the "exploded" signal is received
-	for asteroid in asteroids.get_children():
-		asteroid.connect("exploded", _on_asteroid_exploded)
+	for a in asteroids.get_children():
+		a.connect("exploded", _on_asteroid_exploded)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
 
@@ -72,7 +74,6 @@ func get_random_position():
 
 func _on_asteroid_exploded(pos, size, points):
 	score += points
-	print(score)
 	for i in range(2):
 		match size:
 			Asteroid.AsteroidSize.LARGE:
@@ -87,18 +88,23 @@ func spawn_asteroid(pos, size):
 	a.global_position = pos
 	a.size = size
 	a.connect("exploded", _on_asteroid_exploded)
-	asteroids.add_child(a)
+	asteroids.call_deferred("add_child", a)
+#	We were using the following, but was getting an error that suggested using call_defered here would be better
+#	asteroids.add_child(a)
+	
 	
 func _on_player_died():
 	lives -= 1
-	print(lives)
 	if lives <= 0:
-		get_tree().reload_current_scene()
+		await get_tree().create_timer(2).timeout
+		gameOverScreen.visible = true
+#		get_tree().reload_current_scene()
 	else:
 		await get_tree().create_timer(1).timeout
 		player.respawn(playerSpawn.global_position)
 
-
+func _restart_game():
+	get_tree().reload_current_scene()
 
 
 

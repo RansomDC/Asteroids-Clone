@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvsju1cdry80y"]
+[gd_scene load_steps=6 format=3 uid="uid://dvsju1cdry80y"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level.gd" id="1_cch33"]
 [ext_resource type="PackedScene" uid="uid://bvync6fy8hxm0" path="res://Scenes/Player/Player.tscn" id="2_bn46h"]
 [ext_resource type="PackedScene" uid="uid://x6prspe56jpi" path="res://Scenes/HUD/hud.tscn" id="2_dt8gf"]
+[ext_resource type="PackedScene" uid="uid://dxesdknmxfh6v" path="res://Scenes/GameOverScreen/game_over_screen.tscn" id="3_0mhq0"]
 [ext_resource type="AudioStream" uid="uid://b75dsmh1idcm0" path="res://Assets/Sounds/Laser_Sound.mp3" id="3_11b8a"]
 
 [node name="Level" type="Node"]
@@ -11,6 +12,9 @@ script = ExtResource("1_cch33")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("2_dt8gf")]
+
+[node name="GameOverScreen" parent="UI" instance=ExtResource("3_0mhq0")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_bn46h")]
 position = Vector2(960, 540)

@@ -22,7 +22,7 @@ offset_left = 21.0
 offset_top = 16.0
 offset_right = 231.0
 offset_bottom = 68.0
-text = "SCORE: 9999"
+text = "SCORE: "
 label_settings = SubResource("LabelSettings_3e6om")
 
 [node name="Lives" type="Label" parent="."]

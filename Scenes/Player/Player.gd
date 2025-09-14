@@ -17,7 +17,7 @@ var laser_scene = preload("res://Scenes/Laser/laser.tscn")
 
 var alive = true
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("fire"):
 		fire_laser()
 
@@ -72,7 +72,6 @@ func die():
 
 func _on_area_2d_area_entered(area):
 	if area is Asteroid:
-		print("You hit an asteroid")
 		die()
 		
 func respawn(pos):

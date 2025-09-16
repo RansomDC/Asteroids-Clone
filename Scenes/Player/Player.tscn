@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvync6fy8hxm0"]
+[gd_scene load_steps=3 format=3 uid="uid://bvync6fy8hxm0"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_lcc2l"]
 [ext_resource type="Texture2D" uid="uid://dx0tbepfeltru" path="res://Assets/Images/Ship.png" id="2_cnt12"]
-[ext_resource type="AudioStream" uid="uid://b75dsmh1idcm0" path="res://Assets/Sounds/Laser_Sound.mp3" id="3_dewqm"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -16,10 +15,6 @@ texture = ExtResource("2_cnt12")
 
 [node name="Cannon" type="Node2D" parent="."]
 position = Vector2(0, -40)
-
-[node name="Laser_Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_dewqm")
-volume_db = -11.725
 
 [node name="ShipArea2D" type="Area2D" parent="."]
 visible = false

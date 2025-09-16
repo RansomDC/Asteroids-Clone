@@ -40,8 +40,8 @@ var lives:
 
 func _ready():
 	gameOverScreen.visible = false
-	_score = 0
-	_lives = 3
+	score = 0
+	lives = 3
 	hud.init_lives(_lives)
 	
 	#Laser functionality
@@ -65,6 +65,7 @@ func _process(_delta):
 
 func _on_player_laser_fired(laser):
 	lasers.add_child(laser)
+	$Laser_Sound.play()
 
 func get_random_position():
 	randomize()

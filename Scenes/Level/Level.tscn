@@ -22,13 +22,13 @@ up_direction = Vector2(0.999999, -0.00104167)
 
 [node name="Lasers" type="Node" parent="."]
 
-[node name="Laser Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_11b8a")
-volume_db = -15.62
-
 [node name="Asteroids" type="Node" parent="."]
 
 [node name="PlayerSpawnPos" type="Node2D" parent="."]
 position = Vector2(960, 540)
+
+[node name="Laser_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_11b8a")
+volume_db = -11.725
 
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]

@@ -56,7 +56,6 @@ func fire_laser():
 	l.global_position = cannon.global_position
 	l.rotation = rotation
 	emit_signal("laser_fired", l)
-	$Laser_Sound.play()
 
 func die():
 	# This makes it so that we can't die more than once.

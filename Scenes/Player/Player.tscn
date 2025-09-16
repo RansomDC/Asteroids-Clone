@@ -5,7 +5,7 @@
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_lcc2l")
 metadata/_edit_group_ = true
 
@@ -18,8 +18,10 @@ position = Vector2(0, -40)
 
 [node name="ShipArea2D" type="Area2D" parent="."]
 visible = false
+collision_layer = 2
+collision_mask = 4
 
 [node name="ShipCollisionPoly" type="CollisionPolygon2D" parent="ShipArea2D"]
 polygon = PackedVector2Array(-3, -38, 2, -38, 9, -18, 37, 5, 25, 35, 11, 31, 8, 38, -8, 38, -11, 30, -25, 35, -37, 5, -9, -18)
 
-[connection signal="area_entered" from="ShipArea2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="ShipArea2D" to="." method="_on_ship_area_2d_area_entered"]

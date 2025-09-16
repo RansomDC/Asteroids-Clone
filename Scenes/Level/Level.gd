@@ -7,6 +7,7 @@ class_name Level extends Node
 @onready var gameOverScreen = $UI/GameOverScreen
 @onready var livesContainer = $UI/HUD/LivesContainer
 @onready var playerSpawn = $PlayerSpawnPos
+@onready var playerSpawnArea = $PlayerSpawnPos/PlayerSpawnArea
 
 @onready var asteroid = preload("res://Scenes/Asteroid/Asteroid.tscn")
 
@@ -99,9 +100,11 @@ func _on_player_died():
 	if lives <= 0:
 		await get_tree().create_timer(2).timeout
 		gameOverScreen.visible = true
-#		get_tree().reload_current_scene()
 	else:
 		await get_tree().create_timer(1).timeout
+#		Check if the spawn area is free of asteroids
+		while !playerSpawnArea.is_empty:
+			await get_tree().create_timer(0.1).timeout
 		player.respawn(playerSpawn.global_position)
 
 func _restart_game():

@@ -5,6 +5,8 @@
 [ext_resource type="Shape2D" uid="uid://o3x1e1s08vp0" path="res://Assets/resources/asteroid_cshape_L.tres" id="3_e6mqh"]
 
 [node name="Asteroid" type="Area2D"]
+collision_layer = 4
+collision_mask = 10
 script = ExtResource("1_tgads")
 metadata/_edit_group_ = true
 

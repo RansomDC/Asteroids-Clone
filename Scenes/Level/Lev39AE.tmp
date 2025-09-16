@@ -21,6 +21,11 @@ visible = false
 [node name="Player" parent="." instance=ExtResource("2_bn46h")]
 position = Vector2(960, 540)
 up_direction = Vector2(0.999999, -0.00104167)
+MAX_SPEED = 540
+speed = 30
+rotation_speed = 5
+rotation_direction = 0
+ship_size = 45
 
 [node name="Lasers" type="Node" parent="."]
 

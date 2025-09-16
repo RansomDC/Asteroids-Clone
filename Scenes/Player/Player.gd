@@ -34,6 +34,7 @@ func accelerate():
 
 	
 func _physics_process(delta):
+	
 	get_input()
 	rotation += rotation_direction * rotation_speed * delta
 	
@@ -69,9 +70,7 @@ func die():
 		sprite.visible = false
 		process_mode = Node.PROCESS_MODE_DISABLED
 
-func _on_area_2d_area_entered(area):
-	if area is Asteroid:
-		die()
+
 		
 func respawn(pos):
 	if !alive:
@@ -83,3 +82,7 @@ func respawn(pos):
 		#These re-enable the Player
 		sprite.visible = true
 		process_mode = Node.PROCESS_MODE_INHERIT
+
+func _on_ship_area_2d_area_entered(area):
+	if area is Asteroid:
+		die()

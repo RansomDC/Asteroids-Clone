@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvsju1cdry80y"]
+[gd_scene load_steps=9 format=3 uid="uid://dvsju1cdry80y"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level.gd" id="1_cch33"]
 [ext_resource type="PackedScene" uid="uid://bvync6fy8hxm0" path="res://Scenes/Player/Player.tscn" id="2_bn46h"]
 [ext_resource type="PackedScene" uid="uid://x6prspe56jpi" path="res://Scenes/HUD/hud.tscn" id="2_dt8gf"]
 [ext_resource type="PackedScene" uid="uid://dxesdknmxfh6v" path="res://Scenes/GameOverScreen/game_over_screen.tscn" id="3_0mhq0"]
 [ext_resource type="AudioStream" uid="uid://b75dsmh1idcm0" path="res://Assets/Sounds/Laser_Sound.mp3" id="3_11b8a"]
-[ext_resource type="PackedScene" uid="uid://matgqyct17aa" path="res://Scenes/Asteroid/Asteroid.tscn" id="5_b1n38"]
 [ext_resource type="PackedScene" uid="uid://ciqgfrlmw54vl" path="res://Scenes/PlayerSpawnArea/player_spawn_area.tscn" id="6_kg3y5"]
+[ext_resource type="AudioStream" uid="uid://bwg8i2dcxgt43" path="res://Assets/Sounds/Explosion_Sound.mp3" id="6_p4ndg"]
+[ext_resource type="AudioStream" uid="uid://by5n14clowpaq" path="res://Assets/Sounds/Ship_Crash.mp3" id="7_3t111"]
 
 [node name="Level" type="Node"]
 script = ExtResource("1_cch33")
@@ -26,12 +27,15 @@ up_direction = Vector2(0.999999, -0.00104167)
 
 [node name="Asteroids" type="Node" parent="."]
 
-[node name="Asteroid" parent="Asteroids" instance=ExtResource("5_b1n38")]
-position = Vector2(879, 502)
-
 [node name="Laser_Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_11b8a")
 volume_db = -11.725
+
+[node name="Explosion_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_p4ndg")
+
+[node name="Player_Death_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_3t111")
 
 [node name="PlayerSpawnPos" type="Node2D" parent="."]
 position = Vector2(960, 540)

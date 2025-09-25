@@ -75,6 +75,7 @@ func get_random_position():
 	return v
 
 func _on_asteroid_exploded(pos, size, points):
+	$Explosion_Sound.play()
 	score += points
 	for i in range(2):
 		match size:
@@ -96,6 +97,7 @@ func spawn_asteroid(pos, size):
 	
 	
 func _on_player_died():
+	$Player_Death_Sound.play()
 	lives -= 1
 	if lives <= 0:
 		await get_tree().create_timer(2).timeout

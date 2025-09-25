@@ -30,7 +30,7 @@ func _ready():
 	
 	match size:
 		AsteroidSize.LARGE:
-			speed = randf_range(0, 0)
+			speed = randf_range(100, 100)
 			sprite.texture = preload("res://Assets/Images/L_Meteor.png")
 			cShape.shape = preload("res://Assets/resources/asteroid_cshape_L.tres")
 		AsteroidSize.MEDIUM:

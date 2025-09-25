@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvsju1cdry80y"]
+[gd_scene load_steps=12 format=3 uid="uid://dvsju1cdry80y"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level.gd" id="1_cch33"]
 [ext_resource type="PackedScene" uid="uid://bvync6fy8hxm0" path="res://Scenes/Player/Player.tscn" id="2_bn46h"]
@@ -8,6 +8,43 @@
 [ext_resource type="PackedScene" uid="uid://ciqgfrlmw54vl" path="res://Scenes/PlayerSpawnArea/player_spawn_area.tscn" id="6_kg3y5"]
 [ext_resource type="AudioStream" uid="uid://bwg8i2dcxgt43" path="res://Assets/Sounds/Explosion_Sound.mp3" id="6_p4ndg"]
 [ext_resource type="AudioStream" uid="uid://by5n14clowpaq" path="res://Assets/Sounds/Ship_Crash.mp3" id="7_3t111"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_41lxn"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 540, 1)
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -10.0
+initial_velocity_max = -10.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ghjgl"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 540, 1)
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -20.0
+initial_velocity_max = -20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 3.0
+scale_max = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rhfrf"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 540, 1)
+particle_flag_disable_z = true
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -35.0
+initial_velocity_max = -35.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 6.0
+scale_max = 6.0
 
 [node name="Level" type="Node"]
 script = ExtResource("1_cch33")
@@ -42,5 +79,31 @@ visible = false
 position = Vector2(960, 540)
 
 [node name="PlayerSpawnArea" parent="PlayerSpawnPos" instance=ExtResource("6_kg3y5")]
+
+[node name="BackgroundStarField" type="Node2D" parent="."]
+
+[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarField"]
+z_index = -100
+position = Vector2(1950, 540)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_41lxn")
+lifetime = 280.0
+preprocess = 400.0
+
+[node name="StarFieldMid" type="GPUParticles2D" parent="BackgroundStarField"]
+z_index = -95
+position = Vector2(1950, 540)
+amount = 250
+process_material = SubResource("ParticleProcessMaterial_ghjgl")
+lifetime = 280.0
+preprocess = 400.0
+
+[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarField"]
+z_index = -90
+position = Vector2(1950, 540)
+amount = 65
+process_material = SubResource("ParticleProcessMaterial_rhfrf")
+lifetime = 280.0
+preprocess = 400.0
 
 [connection signal="laser_fired" from="Player" to="." method="_on_player_laser_fired"]

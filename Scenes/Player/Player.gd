@@ -18,6 +18,8 @@ var laser_scene = preload("res://Scenes/Laser/laser.tscn")
 var alive = true
 
 func _process(_delta):
+	if !alive: return
+	
 	if Input.is_action_just_pressed("fire"):
 		fire_laser()
 
@@ -34,6 +36,7 @@ func accelerate():
 
 	
 func _physics_process(delta):
+	if !alive: return
 	
 	get_input()
 	rotation += rotation_direction * rotation_speed * delta
@@ -63,25 +66,22 @@ func die():
 	if alive == true:
 		alive = false
 		emit_signal("died")
-		#This deletes the player
-		#queue_free()
 		
-		#This, instead, disables the sprite and makes the player inactive
+		#This, disables the sprite and makes the player inactive
 		sprite.visible = false
-		process_mode = Node.PROCESS_MODE_DISABLED
+		cShape.set_deferred("disabled", true)
 
 
 		
-func respawn(pos):
+func respawn():
 	if !alive:
 		alive = true
-		global_position = pos
 		#This makes sure we don't have velocity when the player spawns
 		velocity = Vector2.ZERO
 		
 		#These re-enable the Player
 		sprite.visible = true
-		process_mode = Node.PROCESS_MODE_INHERIT
+		cShape.set_deferred("disabled", false)
 
 func _on_ship_area_2d_area_entered(area):
 	if area is Asteroid:

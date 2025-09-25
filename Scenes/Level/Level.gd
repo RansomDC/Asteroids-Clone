@@ -99,6 +99,7 @@ func spawn_asteroid(pos, size):
 func _on_player_died():
 	$Player_Death_Sound.play()
 	lives -= 1
+	player.global_position = playerSpawnArea.global_position
 	if lives <= 0:
 		await get_tree().create_timer(2).timeout
 		gameOverScreen.visible = true
@@ -107,7 +108,7 @@ func _on_player_died():
 #		Check if the spawn area is free of asteroids
 		while !playerSpawnArea.is_empty:
 			await get_tree().create_timer(0.1).timeout
-		player.respawn(playerSpawn.global_position)
+		player.respawn()
 
 func _restart_game():
 	get_tree().reload_current_scene()

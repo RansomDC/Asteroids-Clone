@@ -38,6 +38,7 @@ stream = ExtResource("6_p4ndg")
 stream = ExtResource("7_3t111")
 
 [node name="PlayerSpawnPos" type="Node2D" parent="."]
+visible = false
 position = Vector2(960, 540)
 
 [node name="PlayerSpawnArea" parent="PlayerSpawnPos" instance=ExtResource("6_kg3y5")]
